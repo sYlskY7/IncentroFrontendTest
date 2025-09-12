@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-// tarjeta de crédito con flip y toggle de número
+// tarjeta de crédito con flip (vuelta) y ocultar el número
 @Component({
   selector: 'app-credit-card',
   standalone: true,
