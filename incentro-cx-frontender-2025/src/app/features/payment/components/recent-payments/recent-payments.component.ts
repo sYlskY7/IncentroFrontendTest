@@ -19,16 +19,33 @@ export interface PaymentRow {
       <ul class="divide-y">
         <li *ngFor="let p of payments" class="py-4 flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <span
+              class="w-3 h-3 rounded-full"
+              [ngClass]="{
+                'bg-purple-400': p.type === 'PURCHASE',
+                'bg-indigo-600': p.type === 'CREDIT'
+              }"
+            ></span>
             <div>
               <p class="font-medium">{{ p.label }}</p>
-              <p class="text-xs text-ink-dim">{{ p.type }}</p>
+              <p
+                class="text-xs font-semibold uppercase"
+                [ngClass]="{
+                  'text-orange-500': p.type === 'PURCHASE',
+                  'text-indigo-700': p.type === 'CREDIT'
+                }"
+              >
+                {{ p.type }}
+              </p>
             </div>
           </div>
           <div class="text-right">
             <p class="text-xs text-ink-dim">{{ p.date }}</p>
-            <p [class.text-red-500]="p.amount<0" [class.text-green-600]="p.amount>0">
-              {{ p.amount < 0 ? '-' : '+' }} $ {{ (p.amount < 0 ? -p.amount : p.amount) | number:'1.2-2' }}
+            <p
+              [class.text-red-500]="p.amount < 0"
+              [class.text-green-600]="p.amount > 0"
+            >
+              {{ p.amount < 0 ? '-' : '+' }} $ {{ (p.amount < 0 ? -p.amount : p.amount) | number: '1.2-2' }}
             </p>
           </div>
         </li>

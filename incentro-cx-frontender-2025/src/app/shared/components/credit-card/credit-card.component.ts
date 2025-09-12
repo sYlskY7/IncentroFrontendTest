@@ -11,7 +11,11 @@ import { CommonModule } from '@angular/common';
     <!-- FRONT -->
     <div class="absolute inset-0 bg-paper rounded-card shadow-card p-6 flex flex-col justify-between face">
       <div class="flex items-center justify-between opacity-70">
-        <img src="https://github.com/sYlskY7.png" alt="Profile" class="w-10 h-10 rounded-full object-cover" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 7 Q12 12 9 17" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 5 Q17 12 12 19" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 3 Q22 12 15 21" />
+        </svg>
         <span class="font-semibold tracking-widest">VISA</span>
       </div>
       <div>

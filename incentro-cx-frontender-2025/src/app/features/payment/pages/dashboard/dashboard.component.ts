@@ -20,7 +20,9 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
     RequestApiComponent,
   ],
   template: `
-  <div class="p-8 max-w-[1200px] mx-auto">
+  <div class="p-8 max-w-[1200px] mx-auto relative">
+    <img src="https://github.com/sYlskY7.png" alt="Profile"
+         class="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow absolute top-4 right-4" />
     <h1 class="text-2xl font-bold mb-6">Payment Dashboard</h1>
 
     <div class="mb-8">
