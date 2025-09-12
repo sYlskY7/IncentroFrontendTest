@@ -7,19 +7,24 @@ import { DecimalPipe } from '@angular/common';
   template: `
   <div class="bg-paper rounded-card shadow-card p-6 w-full max-w-md">
     <div class="flex flex-col items-center gap-3">
-      <div class="w-14 h-14 rounded-full bg-gray-200"></div>
+      <img src="https://github.com/sYlskY7.png" alt="Profile" class="w-14 h-14 rounded-full object-cover" />
       <div class="text-center">
         <p class="font-semibold">Incentro CX</p>
-        <p class="text-xs text-ink-dim">(Hoy)</p>
+        <p class="text-xs text-ink-dim">{{ today }}</p>
       </div>
     </div>
     <div class="mt-6 pt-6 border-t">
       <p class="text-xs text-ink-dim">Amount Available</p>
       <p class="text-2xl font-extrabold">$ {{ amount | number:'1.2-2' }}</p>
     </div>
-  </div>
+  </div> 
   `,
 })
 export class BalanceDetailComponent {
   @Input({ required: true }) amount!: number;
+  today: string = new Date().toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
 }
