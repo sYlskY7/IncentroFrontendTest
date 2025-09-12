@@ -1,5 +1,5 @@
 {
-  "name": "incentro-cx-frontender-2025",
+  "name": "incentro-cx-front",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:incentro-cx-frontender-2025": "node dist/incentro-cx-frontender-2025/server/server.mjs"
+    "serve:ssr:incentro-cx-front": "node dist/incentro-cx-front/server/server.mjs"
   },
   "private": true,
   "dependencies": {

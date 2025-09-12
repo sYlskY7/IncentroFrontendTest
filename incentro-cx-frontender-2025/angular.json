@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "incentro-cx-frontender-2025": {
+    "incentro-cx-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/incentro-cx-frontender-2025",
+            "outputPath": "dist/incentro-cx-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "incentro-cx-frontender-2025:build:production"
+              "buildTarget": "incentro-cx-front:build:production"
             },
             "development": {
-              "buildTarget": "incentro-cx-frontender-2025:build:development"
+              "buildTarget": "incentro-cx-front:build:development"
             }
           },
           "defaultConfiguration": "development"
