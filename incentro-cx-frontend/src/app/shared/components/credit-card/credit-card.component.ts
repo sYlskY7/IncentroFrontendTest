@@ -59,7 +59,7 @@ import { CommonModule } from '@angular/common'
     </div>
 
     <!-- BACK -->
-    <div class="absolute inset-0 rounded-card shadow-card p-6 face bg-[#f4c144] text-gray-900" [style.transform]="'rotateY(180deg)'">
+    <div class="absolute inset-0 rounded-card shadow-card p-6 face bg-[#6366F1] text-gray-900" [style.transform]="'rotateY(180deg)'">
       <div class="w-full h-8 bg-black rounded-sm mb-6"></div>
       <div class="bg-white h-10 rounded-sm flex items-center px-4 justify-end shadow-inner">
         <span class="text-sm font-semibold tracking-widest">CVV {{ cvv }}</span>
@@ -76,8 +76,8 @@ import { CommonModule } from '@angular/common'
 })
 export class CreditCardComponent {
   @Input() holder = 'Incentro CX'     
-  @Input() number: string = '1234 5678 9012 3456' 
-  @Input() cvv: string = '123'        
+  @Input() number: string = '0470 0509 9412 7613' 
+  @Input() cvv: string = '251'        
 
   showNumber = false  // controla visibilidad del número
   isFlipped = false   // controla flip
