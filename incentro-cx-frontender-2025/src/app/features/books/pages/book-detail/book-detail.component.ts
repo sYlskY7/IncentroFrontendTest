@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OpenLibraryService } from '../../../../core/services/open-library.service';
 
+// componente de detalle de libro
 @Component({
   selector: 'app-book-detail',
   standalone: true,
@@ -19,7 +20,6 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
 
     <ng-container *ngIf="book as b">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        <!-- Left content -->
         <div class="lg:col-span-9">
           <div class="flex items-baseline gap-4 flex-wrap">
             <h1 class="text-[26px] font-extrabold">{{ b.title }}</h1>
@@ -60,7 +60,6 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
           </div>
         </div>
 
-        <!-- Right cover -->
         <div class="lg:col-span-3 flex justify-center items-start">
           <img *ngIf="coverUrl; else noCover"
                [src]="coverUrl"
@@ -78,64 +77,66 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
   `,
 })
 export class BookDetailComponent implements OnInit {
-  slug = '';
-  book: any = null;
-  coverUrl = '';
-  description = '';
-  fallbackDescription = 'We oftentimes look towards the outside world to find the roots of our problems...';
-  editions: any[] = [];
-  details = { format: '', pages: '', weight: '' };
-  identifiers = { misbn: '', isbn: '' };
-  workId = '';
-  rating = '4.5';
-  loading = true;
-  error = '';
+  slug = ''              
+  book: any = null    
+  coverUrl = ''          
+  description = ''       
+  fallbackDescription = 'No description available'
+  editions: any[] = []   
+  details = { format: '', pages: '', weight: '' }
+  identifiers = { misbn: '', isbn: '' }
+  workId = ''            
+  rating = '4.5'         
+  loading = true
+  error = ''
 
-
+  // inyecta ruta y servicio
   constructor(private route: ActivatedRoute, private ol: OpenLibraryService) {}
 
+  // al iniciar obtiene slug y hace búsqueda
   ngOnInit(): void {
-    this.slug = this.route.snapshot.paramMap.get('slug') ?? '';
-    const query = this.slug.replace(/-/g, ' ');
-    this.fetch(query);
+    this.slug = this.route.snapshot.paramMap.get('slug') ?? ''
+    const query = this.slug.replace(/-/g, ' ')
+    this.fetch(query)
   }
 
+  // busca libro, descripción, portada y ediciones
   private fetch(q: string) {
-    this.loading = true;
+    this.loading = true
     this.ol.search(q).subscribe({
       next: (doc) => {
-        this.book = doc;
-        this.loading = false;
-        if (!doc) { this.error = 'No results'; return; }
+        this.book = doc
+        this.loading = false
+        if (!doc) { this.error = 'No results'; return }
 
         if (doc.cover_i) {
-          this.coverUrl = `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`;
+          this.coverUrl = `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`
         }
 
-        const key = (doc as any)?.key as string | undefined; 
+        const key = (doc as any)?.key
         if (key) {
-          this.workId = key.replace('/works/', '');
+          this.workId = key.replace('/works/', '')
 
           this.ol.getWork(key).subscribe((work: any) => {
-            const d = work?.description;
-            this.description = typeof d === 'string' ? d : (d?.value || '');
-          });
+            const d = work?.description
+            this.description = typeof d === 'string' ? d : (d?.value || '')
+          })
 
           this.ol.getEditions(key, 3).subscribe((eds: any) => {
-            this.editions = (eds?.entries || []).slice(0, 3);
-            const first = this.editions[0] || {};
-            this.details.format = first.physical_format || '';
-            this.details.pages = String(first.number_of_pages || (doc as any).number_of_pages_median || '');
-            this.details.weight = first.weight || '';
-            this.identifiers.isbn = (first.isbn_13?.[0] || first.isbn_10?.[0] || (doc as any).isbn?.[0] || '') as string;
-            this.identifiers.misbn = first.isbn_10?.[0] || '';
-          });
+            this.editions = (eds?.entries || []).slice(0, 3)
+            const first = this.editions[0] || {}
+            this.details.format = first.physical_format || ''
+            this.details.pages = String(first.number_of_pages || (doc as any).number_of_pages_median || '')
+            this.details.weight = first.weight || ''
+            this.identifiers.isbn = (first.isbn_13?.[0] || first.isbn_10?.[0] || (doc as any).isbn?.[0] || '') as string
+            this.identifiers.misbn = first.isbn_10?.[0] || ''
+          })
         }
       },
       error: () => {
-        this.loading = false;
-        this.error = 'Request failed';
+        this.loading = false
+        this.error = 'Request failed'
       }
-    });
+    })
   }
 }
