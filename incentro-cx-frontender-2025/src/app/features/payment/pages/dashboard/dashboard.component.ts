@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CreditCardComponent } from '../../../../shared/components/credit-card/credit-card.component';
 import { BalanceDetailComponent } from '../../../../shared/components/balance-detail/balance-detail.component';
 import { RecentPaymentsComponent, PaymentRow } from '../../components/recent-payments/recent-payments.component';
@@ -12,6 +13,7 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     CreditCardComponent,
     BalanceDetailComponent,
     RecentPaymentsComponent,
@@ -23,8 +25,9 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
 
     <div class="mb-8">
       <input
+        [(ngModel)]="query"
         class="w-full md:w-[640px] px-4 py-3 rounded-full bg-white shadow-sm outline-none"
-        placeholder="Filter payments by name (optional)" />
+        placeholder="Filter payments by name" />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -32,7 +35,7 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
       <div class="lg:col-span-7">
         <h2 class="text-xl font-semibold mb-4">Credit Card</h2>
         <app-credit-card [holder]="'Incentro CX'"></app-credit-card>
-        <app-recent-payments [payments]="rows"></app-recent-payments>
+        <app-recent-payments [payments]="filtered"></app-recent-payments>
       </div>
 
       <!-- Columna derecha -->
@@ -54,6 +57,12 @@ export class DashboardComponent implements OnInit {
     { label: 'Harry Potter 1', type: 'PURCHASE', date: 'Mar 20, 2021', amount: -10 },
     { label: 'Balance available', type: 'CREDIT', date: 'Mar 20, 2021', amount: +10 },
   ];
+
+  query = '';
+  get filtered() {
+    const q = this.query.trim().toLowerCase();
+    return !q ? this.rows : this.rows.filter(r => r.label.toLowerCase().includes(q));
+  }
 
   constructor(private ol: OpenLibraryService) {}
 
