@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { OpenLibraryDoc } from '../../../../core/models/open-library';
 import { OpenLibraryService } from '../../../../core/services/open-library.service';
 
+// buscador simple de libros + navegación al detalle
 @Component({
   selector: 'app-request-api',
   standalone: true,
@@ -38,6 +39,7 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
       <!-- Result block -->
       <div class="mt-6 text-sm" *ngIf="loading">Searching…</div>
       <div class="mt-6 text-sm text-red-600" *ngIf="error">{{ error }}</div>
+
       <div class="mt-6" *ngIf="result || book as b">
         <button
           type="button"
@@ -45,11 +47,8 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
           class="w-full text-left p-3 rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200"
         >
           <p class="font-medium">{{ b.title }}</p>
-          <p
-            class="text-sm text-ink-dim"
-            *ngIf="b.author_name && b.author_name.length > 0"
-          >
-            by {{ b.author_name![0] }}
+          <p class="text-sm text-ink-dim" *ngIf="b.author_name?.length">
+            by {{ b.author_name?.[0] || '' }}
           </p>
           <p class="text-xs text-ink-dim mt-1" *ngIf="b.first_publish_year">
             First published: {{ b.first_publish_year }}
@@ -62,13 +61,15 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
 export class RequestApiComponent {
   @Input({ required: true }) book: OpenLibraryDoc | null = null;
 
-  q = '';
-  result: OpenLibraryDoc | null = null;
-  loading = false;
-  error = '';
+  q = ''; // término de búsqueda
+  result: OpenLibraryDoc | null = null; // primer resultado
+  loading = false; // estado de carga
+  error = ''; // mensaje de error
 
+  // inyecta servicio y router
   constructor(private ol: OpenLibraryService, private router: Router) {}
 
+  // lanza la búsqueda y gestiona estados de carga/error
   onSearch() {
     const term = this.q.trim();
     if (!term) {
@@ -78,6 +79,7 @@ export class RequestApiComponent {
     }
     this.error = '';
     this.loading = true;
+
     this.ol.search(term).subscribe({
       next: (doc) => {
         this.result = doc;
@@ -91,6 +93,7 @@ export class RequestApiComponent {
     });
   }
 
+  // slug simple para la url de detalle
   private slugify(v: string) {
     return v
       .toLowerCase()
@@ -98,8 +101,9 @@ export class RequestApiComponent {
       .replace(/(^-|-$)/g, '');
   }
 
+  // navega al detalle del libro con el slug
   openDetail(doc: OpenLibraryDoc) {
-  const slug = this.slugify(doc.title);
-  this.router.navigate(['/book', slug]);
-}
+    const slug = this.slugify(doc.title);
+    this.router.navigate(['/book', slug]);
+  }
 }
