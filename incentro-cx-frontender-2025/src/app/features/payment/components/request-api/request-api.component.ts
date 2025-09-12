@@ -30,9 +30,11 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
     <div class="mt-6 text-sm" *ngIf="loading">Searching…</div>
     <div class="mt-6 text-sm text-red-600" *ngIf="error">{{ error }}</div>
     <div class="mt-6" *ngIf="(result || book) as b">
-      <p class="font-medium">{{ b.title }}</p>
-      <p class="text-sm text-ink-dim" *ngIf="b.author_name && b.author_name.length > 0">by {{ b.author_name![0] }}</p>
-      <p class="text-xs text-ink-dim mt-1" *ngIf="b.first_publish_year">First published: {{ b.first_publish_year }}</p>
+      <button type="button" (click)="openDetail(b)" class="w-full text-left p-3 rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200">
+        <p class="font-medium">{{ b.title }}</p>
+        <p class="text-sm text-ink-dim" *ngIf="b.author_name && b.author_name.length > 0">by {{ b.author_name![0] }}</p>
+        <p class="text-xs text-ink-dim mt-1" *ngIf="b.first_publish_year">First published: {{ b.first_publish_year }}</p>
+      </button>
     </div>
   </div>
   `,
@@ -67,5 +69,14 @@ export class RequestApiComponent {
         this.error = 'Request failed, try again';
       }
     });
+  }
+
+  private slugify(v: string) {
+    return v.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  openDetail(doc: OpenLibraryDoc) {
+    const slug = this.slugify(doc.title);
+    window.open(`/${slug}`, '_blank');
   }
 }
