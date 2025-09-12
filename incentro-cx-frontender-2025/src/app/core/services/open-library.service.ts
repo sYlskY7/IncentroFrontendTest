@@ -16,4 +16,14 @@ export class OpenLibraryService {
       map(res => res.docs?.[0] ?? null)
     );
   }
+
+  getWork(workKey: string) {
+    const url = `https://openlibrary.org${workKey}.json`;
+    return this.http.get<any>(url);
+  }
+
+  getEditions(workKey: string, limit = 3) {
+    const url = `https://openlibrary.org${workKey}/editions.json?limit=${limit}`;
+    return this.http.get<any>(url);
+  }
 }
