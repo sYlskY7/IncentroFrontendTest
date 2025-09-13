@@ -5,19 +5,6 @@ Se ha desarrollado en **Angular 18.2.14 + TailwindCSS 3**, siguiendo buenas prá
 
 ---
 
-## 📂 Estructura principal
-
-src/
-├── app/
-│   ├── core/          # Servicios y modelos globales (ej: OpenLibraryService)
-│   ├── features/      # Features principales (books, payments, etc.)
-│   │   ├── components/ # Componentes de cada feature
-│   │   └── pages/      # Páginas con routing
-│   └── shared/        # Componentes reutilizables (credit-card, balance, etc.)
-└── assets/            # Recursos estáticos
-
----
-
 ## ⚙️ Instalación y uso
 
 # Clonar el repositorio
