@@ -6,11 +6,11 @@ import { OpenLibraryDoc, OpenLibrarySearchResponse } from '../models/open-librar
 
 @Injectable({ providedIn: 'root' })
 export class OpenLibraryService {
-  private readonly SEARCH_URL = 'https://openlibrary.org/search.json'; // endpoint base de búsqueda
+  private readonly SEARCH_URL = 'https://openlibrary.org/search.json'; // Endpoint base de búsqueda
 
   constructor(private http: HttpClient) {}
 
-  // busca libros y devuelve el primero que encuentre o null
+  // Busca libros y devuelve el primero que encuentre o null
   search(term: string): Observable<OpenLibraryDoc | null> {
     const q = term?.trim();
     if (!q) return of(null);
@@ -22,13 +22,13 @@ export class OpenLibraryService {
     );
   }
 
-  // devuelve info de un work a partir de su key
+  // Devuelve info de un work a partir de su key
   getWork(workKey: string): Observable<any> {
     const url = `https://openlibrary.org${workKey}.json`;
     return this.http.get<any>(url);
   }
 
-  // devuelve las ediciones de un work, por defecto 3
+  // Devuelve las ediciones de un work, por defecto 3
   getEditions(workKey: string, limit = 3): Observable<any> {
     const url = `https://openlibrary.org${workKey}/editions.json?limit=${limit}`;
     return this.http.get<any>(url);

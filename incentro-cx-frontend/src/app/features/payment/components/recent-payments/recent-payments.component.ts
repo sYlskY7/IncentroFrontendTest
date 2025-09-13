@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { DecimalPipe, CommonModule } from '@angular/common'
 
-// modelo simple para cada pago
+// Modelo simple para cada pago
 export interface PaymentRow {
   label: string
   type: 'PURCHASE' | 'CREDIT'
@@ -9,7 +9,7 @@ export interface PaymentRow {
   amount: number
 }
 
-// listado de pagos recientes
+// Listado de pagos recientes
 @Component({
   selector: 'app-recent-payments',
   standalone: true,
@@ -20,7 +20,7 @@ export interface PaymentRow {
     <div class="max-h-72 overflow-y-auto pr-2">
       <ul class="divide-y">
         <li *ngFor="let p of payments" class="py-4 flex items-center justify-between">
-          <!-- lado izquierdo con icono y datos -->
+          <!-- Lado izquierdo con icono y datos -->
           <div class="flex items-center gap-3">
             <span
               class="w-3 h-3 rounded-full"
@@ -42,7 +42,7 @@ export interface PaymentRow {
               </p>
             </div>
           </div>
-          <!-- lado derecho con fecha y cantidad -->
+          <!-- Lado derecho con fecha y cantidad -->
           <div class="text-right">
             <p class="text-xs text-ink-dim">{{ p.date }}</p>
             <p
@@ -59,6 +59,6 @@ export interface PaymentRow {
   `
 })
 export class RecentPaymentsComponent {
-  // recibe la lista de pagos desde el padre
+  // Recibe la lista de pagos desde el padre
   @Input({ required: true }) payments!: PaymentRow[]
 }

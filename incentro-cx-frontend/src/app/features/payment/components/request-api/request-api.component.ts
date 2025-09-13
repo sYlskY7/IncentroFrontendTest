@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { OpenLibraryDoc } from '../../../../core/models/open-library';
 import { OpenLibraryService } from '../../../../core/services/open-library.service';
 
-// buscador simple de libros + navegación al detalle
+// Buscador simple de libros + navegación al detalle
 @Component({
   selector: 'app-request-api',
   standalone: true,
@@ -36,7 +36,6 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
         Add a new book
       </button>
 
-      <!-- Result block -->
       <div class="mt-6 text-sm" *ngIf="loading">Searching…</div>
       <div class="mt-6 text-sm text-red-600" *ngIf="error">{{ error }}</div>
 
@@ -61,15 +60,15 @@ import { OpenLibraryService } from '../../../../core/services/open-library.servi
 export class RequestApiComponent {
   @Input({ required: true }) book: OpenLibraryDoc | null = null;
 
-  q = ''; // término de búsqueda
-  result: OpenLibraryDoc | null = null; // primer resultado
-  loading = false; // estado de carga
-  error = ''; // mensaje de error
+  q = ''; // Término de búsqueda
+  result: OpenLibraryDoc | null = null; 
+  loading = false; 
+  error = ''; 
 
-  // inyecta servicio y router
+  // Inyecta servicio y router
   constructor(private ol: OpenLibraryService, private router: Router) {}
 
-  // lanza la búsqueda y gestiona estados de carga/error
+  // Lanza la búsqueda y gestiona estados de carga/error
   onSearch() {
     const term = this.q.trim();
     if (!term) {
@@ -93,7 +92,7 @@ export class RequestApiComponent {
     });
   }
 
-  // slug simple para la url de detalle
+  // Slug simple para la url de detalle
   private slugify(v: string) {
     return v
       .toLowerCase()
@@ -101,7 +100,7 @@ export class RequestApiComponent {
       .replace(/(^-|-$)/g, '');
   }
 
-  // navega al detalle del libro con el slug
+  // Navega al detalle del libro con el slug
   openDetail(doc: OpenLibraryDoc) {
     const slug = this.slugify(doc.title);
     this.router.navigate(['/book', slug]);

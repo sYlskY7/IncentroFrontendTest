@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OpenLibraryService } from '../../../../core/services/open-library.service';
 
-// componente de detalle de libro
+// Componente de detalle de libro
 @Component({
   selector: 'app-book-detail',
   standalone: true,
@@ -90,17 +90,17 @@ export class BookDetailComponent implements OnInit {
   loading = true
   error = ''
 
-  // inyecta ruta y servicio
+  // Inyecta ruta y servicio
   constructor(private route: ActivatedRoute, private ol: OpenLibraryService) {}
 
-  // al iniciar obtiene slug y hace búsqueda
+  // Al iniciar obtiene slug y hace búsqueda
   ngOnInit(): void {
     this.slug = this.route.snapshot.paramMap.get('slug') ?? ''
     const query = this.slug.replace(/-/g, ' ')
     this.fetch(query)
   }
 
-  // busca libro, descripción, portada y ediciones
+  // Busca libro, descripción, portada y ediciones
   private fetch(q: string) {
     this.loading = true
     this.ol.search(q).subscribe({

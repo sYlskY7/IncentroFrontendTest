@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common'
 <div class="relative w-[360px] h-[220px] cursor-pointer card-wrap" (click)="toggleFlip()">
   <div class="card-3d w-full h-full" [style.transform]="isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'">
     
-    <!-- FRONT -->
+    <!-- Front -->
     <div class="absolute inset-0 bg-paper rounded-card shadow-card p-6 flex flex-col justify-between face">
       <div class="flex items-center justify-between opacity-70">
         <!-- icono contactless -->
@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common'
         <span class="font-semibold tracking-widest">VISA</span>
       </div>
 
-      <!-- número de tarjeta -->
+      <!-- Número de tarjeta -->
       <div>
         <p class="text-sm uppercase text-ink-dim">Number</p>
         <p class="text-xl font-semibold tracking-[.25em]">
@@ -34,19 +34,19 @@ import { CommonModule } from '@angular/common'
           class="mt-2 inline-flex items-center gap-1 text-xs text-blue-600 hover:opacity-80"
         >
           <ng-container *ngIf="showNumber; else eyeOpen">
-            <!-- ojo cerrado -->
+            <!-- Ojo cerrado -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-5 0-9.27-3.11-11-8 1-2.73 2.78-4.94 5-6.42"/><path d="M1 1l22 22"/><path d="M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-.88"/></svg>
             <span>Hide</span>
           </ng-container>
           <ng-template #eyeOpen>
-            <!-- ojo abierto -->
+            <!-- Ojo abierto -->
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             <span>Show</span>
           </ng-template>
         </button>
       </div>
 
-      <!-- titular y fecha -->
+      <!-- Titular y fecha -->
       <div class="flex items-center justify-between">
         <div class="text-sm">
           <p class="uppercase">{{ holder }}</p>
@@ -58,7 +58,7 @@ import { CommonModule } from '@angular/common'
       </div>
     </div>
 
-    <!-- BACK -->
+    <!-- Back -->
     <div class="absolute inset-0 rounded-card shadow-card p-6 face bg-[#6366F1] text-gray-900" [style.transform]="'rotateY(180deg)'">
       <div class="w-full h-8 bg-black rounded-sm mb-6"></div>
       <div class="bg-white h-10 rounded-sm flex items-center px-4 justify-end shadow-inner">
@@ -79,28 +79,28 @@ export class CreditCardComponent {
   @Input() number: string = '0470 0509 9412 7613' 
   @Input() cvv: string = '251'        
 
-  showNumber = false  // controla visibilidad del número
-  isFlipped = false   // controla flip
+  showNumber = false  // Controla visibilidad del número
+  isFlipped = false   // Controla el giro de la tarjeta
 
-  // devuelve el número ocultando dígitos
+  // Devuelve el número ocultando dígitos
   get maskedNumber(): string {
     const digits = this.number.replace(/\s+/g, '')
     const last4 = digits.slice(-4)
     return '**** **** **** ' + last4
   }
 
-  // devuelve el número completo
+  // Devuelve el número completo
   get displayNumber(): string {
     return this.number
   }
 
-  // alterna mostrar/ocultar número
+  // Alterna mostrar/ocultar número
   toggleNumber(event: Event) {
     event.stopPropagation()
     this.showNumber = !this.showNumber
   }
 
-  // voltea la tarjeta
+  // Gira la tarjeta
   toggleFlip() {
     this.isFlipped = !this.isFlipped
   }

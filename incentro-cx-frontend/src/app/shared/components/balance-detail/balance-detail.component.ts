@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { DecimalPipe } from '@angular/common'
 
-// muestra el balance y la fecha actual
+// Muestra el balance y la fecha actual
 @Component({
   selector: 'app-balance-detail',
   standalone: true,
@@ -9,7 +9,7 @@ import { DecimalPipe } from '@angular/common'
   template: `
   <div class="bg-paper rounded-card shadow-card p-6 w-full max-w-md">
     <div class="flex flex-col items-center gap-3">
-      <!-- avatar -->
+      <!-- Avatar -->
       <img src="https://github.com/sYlskY7.png" alt="Profile" class="w-14 h-14 rounded-full object-cover" />
       <div class="text-center">
         <p class="font-semibold">Incentro CX</p>
@@ -24,9 +24,9 @@ import { DecimalPipe } from '@angular/common'
   `,
 })
 export class BalanceDetailComponent {
-  @Input({ required: true }) amount!: number // cantidad mostrada
+  @Input({ required: true }) amount!: number // Cantidad mostrada
 
-  // fecha actual formateada
+  // Fecha actual formateada
   today: string = new Date().toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
