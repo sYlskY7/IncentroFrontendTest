@@ -16,7 +16,7 @@ import { DecimalPipe } from '@angular/common'
         <p class="text-xs text-ink-dim">{{ today }}</p>
       </div>
     </div>
-    <div class="mt-6 pt-6 border-t">
+    <div class="mt-6 pt-6 border-t text-center">
       <p class="text-xs text-ink-dim">Amount Available</p>
       <p class="text-2xl font-extrabold">$ {{ amount | number:'1.2-2' }}</p>
     </div>
