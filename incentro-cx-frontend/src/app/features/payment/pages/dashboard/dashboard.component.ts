@@ -22,7 +22,7 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
   ],
   template: `
   <div class="p-8 max-w-[1200px] mx-auto relative">
-    <!-- avatar -->
+    <!-- avatar superior derecho -->
     <img
       src="https://github.com/sYlskY7.png"
       alt="Profile"
@@ -31,24 +31,29 @@ import { OpenLibraryDoc } from '../../../../core/models/open-library';
 
     <h1 class="text-2xl font-bold mb-6">Payment Dashboard</h1>
 
-    <!-- filtro -->
-    <div class="mb-8">
+    <!-- filtro de pagos recientes -->
+    <div class="mb-8 relative w-full md:w-[640px]">
+      <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+      </span>
       <input
         [(ngModel)]="query"
-        class="w-full md:w-[640px] px-4 py-3 rounded-full bg-white shadow-sm outline-none"
+        class="w-full pl-10 pr-4 py-3 rounded-full bg-white shadow-sm outline-none"
         placeholder="Filter payments by name"
       />
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- izquierda: tarjeta + pagos -->
+      <!--tarjeta + pagos -->
       <div class="lg:col-span-7">
         <h2 class="text-xl font-semibold mb-4">Credit Card</h2>
         <app-credit-card [holder]="'Incentro CX'"></app-credit-card>
         <app-recent-payments [payments]="filtered"></app-recent-payments>
       </div>
 
-      <!-- derecha: balance + request api -->
+      <!--balance detail + request api -->
       <div class="lg:col-span-5 flex flex-col gap-6">
         <h2 class="text-xl font-semibold">Balance Detail</h2>
         <app-balance-detail [amount]="280"></app-balance-detail>
