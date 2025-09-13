@@ -5,22 +5,6 @@ Se ha desarrollado en **Angular 18.2.14 + TailwindCSS 3**, siguiendo buenas prá
 
 ---
 
-## ✅ Requisitos cumplidos de la prueba
-
-- Proyecto inicializado desde cero con **Angular**.
-- Uso de **TailwindCSS** para los estilos.
-- Componentes reutilizables y tipados.
-- Consumo de la API de **OpenLibrary** al iniciar la aplicación.
-- Implementación de un **Dashboard** con:
-  - Tarjeta de crédito interactiva (flip + toggle de número + símbolo contactless).
-  - Balance con fecha actual y cantidad centrada.
-  - Pagos recientes con scroll y colores diferenciados por tipo.
-  - Búsqueda de libros + detalle con enrutado dinámico.
-- Filtro de pagos mediante barra de búsqueda con icono de lupa.
-- Avatar superior derecho con efecto hover (zoom).
-
----
-
 ## 📂 Estructura principal
 
 src/
