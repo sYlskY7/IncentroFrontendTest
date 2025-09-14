@@ -1,26 +1,54 @@
-# Incentro CX - Prueba Técnica Frontend 2025
+# 🚀 Incentro CX - Prueba Técnica Frontend 2025
 
 Este proyecto es la implementación de la **Prueba Técnica Frontend 2025** para Incentro CX España.  
-Se ha desarrollado en **Angular + TailwindCSS**, siguiendo las buenas prácticas de componentización y organización del código.
+Se ha desarrollado en **Angular 18.2.14 + TailwindCSS 3**, siguiendo buenas prácticas de componentización y organización del código.
 
-## 🚀 Requisitos cumplidos
+---
 
-- Proyecto inicializado desde cero con Angular.
-- Uso de **TailwindCSS** para los estilos.
-- Componentes reutilizables y tipados.
-- Consumo de la API de **OpenLibrary** al iniciar la aplicación.
-- Implementación de un dashboard con:
-  - Tarjeta de crédito interactiva (con flip y toggle de número).
-  - Balance con fecha actual.
-  - Pagos recientes con scroll y estilos.
-  - Búsqueda y detalle de libros con enrutado.
-- Filtro de pagos mediante barra de búsqueda.
+## ⚙️ Instalación y uso
 
-## 📦 Instalación y uso
+# Clonar el repositorio
+git clone https://github.com/tuusuario/IncentroFrontendTest.git
 
-```bash
-# instalar dependencias
+# Entrar al proyecto
+cd IncentroFrontendTest
+
+# Instalar dependencias
 npm install
 
-# iniciar servidor de desarrollo
+# Iniciar servidor de desarrollo
 npm run start
+
+El servidor arrancará en http://localhost:4200/ 
+
+## 🛠️ Tecnologías utilizadas
+- **Angular 18.2.14**
+- **TailwindCSS 3**
+- **TypeScript**
+- **RxJS**
+- **API pública OpenLibrary**
+
+---
+
+## 🌐 API utilizada
+
+Se consume la API pública de **OpenLibrary**:
+
+- **Búsqueda de libros**:  
+  `https://openlibrary.org/search.json?q=harry+potter`
+
+- **Detalle de un libro (work)**:  
+  `https://openlibrary.org/works/OL82563W.json`
+
+- **Ediciones de un libro**:  
+  `https://openlibrary.org/works/OL82563W/editions.json?limit=3`
+
+---
+
+## ✨ Funcionalidades clave
+- **Dashboard principal** con tarjeta, balance, pagos recientes y buscador.
+- **Tarjeta de crédito** con animación 3D (flip) y ocultar/mostrar número.
+- **Pagos recientes** con scroll e iconos por tipo.
+- **Balance** con fecha actual y cantidad centrada.
+- **Búsqueda de libros** y navegación dinámica a la página de detalle.
+- **Página de detalle** con portada, descripción, ediciones y metadatos.
