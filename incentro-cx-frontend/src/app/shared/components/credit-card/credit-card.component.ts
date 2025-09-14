@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-// tarjeta de crédito con flip (vuelta) y ocultar el número
+// Tarjeta de crédito con flip (vuelta) y ocultar el número
 @Component({
   selector: 'app-credit-card',
   standalone: true,
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common'
 <div class="relative w-[360px] h-[220px] cursor-pointer card-wrap" (click)="toggleFlip()">
   <div class="card-3d w-full h-full" [style.transform]="isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'">
     
-    <!-- Front -->
+    <!-- Parte delantera de la tarjeta -->
     <div class="absolute inset-0 bg-paper rounded-card shadow-card p-6 flex flex-col justify-between face">
       <div class="flex items-center justify-between opacity-70">
         <!-- icono contactless -->
@@ -58,7 +58,7 @@ import { CommonModule } from '@angular/common'
       </div>
     </div>
 
-    <!-- Back -->
+    <!-- Parte trasera de la tarjeta -->
     <div class="absolute inset-0 rounded-card shadow-card p-6 face bg-[#6366F1] text-gray-900" [style.transform]="'rotateY(180deg)'">
       <div class="w-full h-8 bg-black rounded-sm mb-6"></div>
       <div class="bg-white h-10 rounded-sm flex items-center px-4 justify-end shadow-inner">
