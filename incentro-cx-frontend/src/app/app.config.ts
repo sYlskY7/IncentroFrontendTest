@@ -6,7 +6,7 @@ import { BookDetailComponent } from './features/books/pages/book-detail/book-det
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
-  { path: 'book/:slug', component: BookDetailComponent },  // Routing con Slug
+  { path: 'book/:slug', component: BookDetailComponent },  // Routing con Slug dinámico
   { path: '**', redirectTo: '' },
 ];
 
